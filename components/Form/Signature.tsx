@@ -1,12 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Section = styled.section`
   display: flex;
   justify-content: end;
   margin-top: 80px;
   margin-right: 50px;
-`
+`;
 const Container = styled.section`
   display: flex;
   justify-content: center;
@@ -14,7 +13,7 @@ const Container = styled.section`
   position: relative;
   border-top: 1px solid
     ${(props) => {
-      return props.theme.textPrimary
+      return props.theme.textPrimary;
     }};
   padding-top: 5px;
   img {
@@ -23,18 +22,18 @@ const Container = styled.section`
     z-index: -1;
     top: -60px;
   }
-`
+`;
 
 const Signature = () => (
   <Section>
     <Container>
       <div>Pečiatka a podpis</div>
-      <img
+      {/* <img
         src="MN_podpis.png"
         alt="podpis"
-      />
+      /> */}
     </Container>
   </Section>
-)
+);
 
-export default Signature
+export default Signature;

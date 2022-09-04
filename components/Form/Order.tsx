@@ -81,7 +81,7 @@ const Order = () => {
         <tbody>
           {order.map((item, index) => {
             return (
-              <tr>
+              <tr key={item[2]}>
                 <td className="align-right">{index + 1}.</td>
                 <td className="align-left">{item[2]}</td>
                 <td className="align-right">{utils.formatPrice(item[1])}</td>

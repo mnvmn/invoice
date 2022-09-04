@@ -1,16 +1,8 @@
 import type { NextPage } from "next";
-import { ThemeProvider } from "styled-components";
-import Form from "../components/Form/Form";
-import { GlobalStyle } from "../styles/Global";
-import { theme } from "../styles/theme";
+import Form from "../components/form/Form";
 
 const Home: NextPage = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Form />
-    </ThemeProvider>
-  );
+  return <Form />;
 };
 
 export default Home;
