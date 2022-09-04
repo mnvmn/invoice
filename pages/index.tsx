@@ -1,24 +1,16 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next";
+import { ThemeProvider } from "styled-components";
+import Form from "../components/Form/Form";
+import { GlobalStyle } from "../styles/Global";
+import { theme } from "../styles/theme";
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Invoice App</title>
-        <meta name="description" content="Invoice app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Form />
+    </ThemeProvider>
+  );
+};
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-      </main>
-    </div>
-  )
-}
-
-export default Home
+export default Home;
