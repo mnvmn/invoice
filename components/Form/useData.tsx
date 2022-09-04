@@ -14,7 +14,7 @@ const useData = () => {
   const [dateDelivered, setDateDelivered] = useState(new Date());
   const [dateBilled, setDateBilled] = useState(new Date());
   const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [title, setTitle] = useState<string>(null);
+  const [title, setTitle] = useState<string>("");
 
   useEffect(() => {
     dateBilled.setFullYear(2022);

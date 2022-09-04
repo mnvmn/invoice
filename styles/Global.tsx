@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle<{theme: typeof theme}>`
     height: 100%;
     font-family: sans-serif;
     font-weight: 300;
-    text-color: ${(props) => props.theme.colorText};
+    text-color: ${(props) => props.theme.textPrimary};
     margin: 0;
     background-color: ${(props) => props.theme.bgDefault};
     -webkit-print-color-adjust: exact !important;
