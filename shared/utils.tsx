@@ -1,5 +1,6 @@
 export enum DateFormat {
   en = 'YYYY-MM-DD',
+  sk = 'd.M.YYYY',
 }
 
 const utils = {
@@ -12,25 +13,26 @@ const utils = {
       return priceFormatted + `,${('00' + fraction).slice(-2)}`
     }
   },
-  formatDate: (input: Date | string, format?: DateFormat) => {
-    const date: Date = typeof input === 'string' ? new Date(input) : input
+  formatDate: (inputDate: Date | string, format?: DateFormat) => {
+    const date: Date = typeof inputDate === 'string' ? new Date(inputDate) : inputDate
     const day = date.getDate()
     const month = date.getMonth() + 1
     const year = date.getFullYear()
     switch (format) {
       case DateFormat.en:
         return `${year}-${('0' + month).slice(-2)}-${('0' + day).slice(-2)}`
+      case DateFormat.sk:
       default:
         return `${day}.${month}.${year}`
     }
   },
-  addDays: (input: Date | string, days: number) => {
-    const date: Date = typeof input === 'string' ? new Date(input) : input
+  addDays: (inputDate: Date | string, days: number) => {
+    const date: Date = typeof inputDate === 'string' ? new Date(inputDate) : inputDate
     date.setDate(date.getDate() + days)
     return date
   },
-  getVariableSymbol: (input: Date | string, count: number) => {
-    const dateDelivered: Date = typeof input === 'string' ? new Date(input) : input
+  getVariableSymbol: (inputDate: Date | string, count: number) => {
+    const dateDelivered: Date = typeof inputDate === 'string' ? new Date(inputDate) : inputDate
     return `${dateDelivered.getFullYear()}000${count}`
   },
 }

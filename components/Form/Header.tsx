@@ -1,10 +1,9 @@
 import utils from '@shared/utils'
 import {useFormikContext} from 'formik'
-import React from 'react'
 import styled from 'styled-components'
 import {DataType} from './useData'
 
-const Section = styled.section`
+const Section = styled.header`
   display: flex;
   margin-bottom: 20px;
   b {

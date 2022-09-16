@@ -1,9 +1,8 @@
 import {useFormikContext} from 'formik'
-import React from 'react'
 import styled from 'styled-components'
 import {DataType} from './useData'
 
-const Section = styled.section`
+const Section = styled.footer`
   position: fixed;
   bottom: 0;
   text-align: center;

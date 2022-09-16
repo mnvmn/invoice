@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react'
 
 const pricePerUnit = 26.5
 const count = 1
+const LOCAL_STORAGE_KEY = 'invoice-data'
 
 type OrderItem = [number, number, string]
 
@@ -22,7 +23,8 @@ const useForm = () => {
   })
 
   useEffect(() => {
-    const dataCopy = {...data}
+    const localData = localStorage.getItem(LOCAL_STORAGE_KEY)
+    const dataCopy = localData ? JSON.parse(localData) : {...data}
     const dateBilled = new Date()
     dateBilled.setFullYear(2022)
     dateBilled.setMonth(8)
@@ -40,6 +42,10 @@ const useForm = () => {
 
   return {
     data,
+    persistData: (newData: typeof data) => {
+      console.log('newData', newData)
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newData))
+    },
   }
 }
 
