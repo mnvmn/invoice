@@ -19,7 +19,7 @@ const utils = {
     const year = date.getFullYear()
     switch (format) {
       case DateFormat.en:
-        return `${year}-${month}-${day}`
+        return `${year}-${('0' + month).slice(-2)}-${('0' + day).slice(-2)}`
       default:
         return `${day}.${month}.${year}`
     }
