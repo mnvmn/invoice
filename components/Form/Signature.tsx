@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 
 const Section = styled.section`
@@ -30,7 +29,7 @@ const Signature = () => (
     <Container>
       <div>Pečiatka a podpis</div>
       <img
-        src="MN_podpis.png"
+        src="podpis.png"
         alt="podpis"
       />
     </Container>
