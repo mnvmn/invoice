@@ -1,5 +1,5 @@
+import constant from '@shared/const'
 import {useEffect, useState} from 'react'
-import constant from 'src/shared/const'
 
 const pricePerUnit = 26.5
 const count = 1
@@ -15,7 +15,7 @@ const useForm = () => {
     dateBilled: new Date(),
     dateDelivered: new Date(),
     daysDue: 16,
-    title: null,
+    title: '',
     iban: 'SK07 1100 0000 0029 4613 0841',
     registrationNr: '110-315729',
   })
@@ -40,7 +40,7 @@ const useForm = () => {
     }, 0)
 
     setData(dataCopy)
-  })
+  }, [])
 
   return {
     data,
