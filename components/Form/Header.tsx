@@ -1,6 +1,8 @@
-import React, {useContext} from 'react'
+import utils from '@shared/utils'
+import {useFormikContext} from 'formik'
+import React from 'react'
 import styled from 'styled-components'
-import DataContext from './dataContext'
+import {DataType} from './useData'
 
 const Section = styled.section`
   display: flex;
@@ -10,12 +12,12 @@ const Section = styled.section`
   }
 `
 const Header = () => {
-  const {variableSymbol} = useContext(DataContext)
+  const {values} = useFormikContext<DataType>()
 
   return (
     <Section>
       <div>Faktúra</div>
-      <b>{variableSymbol}</b>
+      <b>{utils.getVariableSymbol(values.dateDelivered, values.count)}</b>
     </Section>
   )
 }

@@ -1,8 +1,14 @@
 const utils = {
   formatPrice: (price: number) => {
-    const fraction = price.toFixed(2).split('.')[1]
-    const priceFormatted = parseInt(price.toString()).toLocaleString().replace(',', ' ')
-    return priceFormatted + `,${('00' + fraction).slice(-2)}`
+    console.log(' :>> ')
+
+    if (isNaN(price) || price === 0 || price === null) {
+      return '0,00'
+    } else {
+      const fraction = price.toFixed(2).split('.')[1]
+      const priceFormatted = parseInt(price.toString()).toLocaleString().replace(',', ' ')
+      return priceFormatted + `,${('00' + fraction).slice(-2)}`
+    }
   },
   formatDate: (date: Date) => {
     const day = date.getDate()
@@ -16,6 +22,7 @@ const utils = {
     result.setDate(result.getDate() + days)
     return result
   },
+  getVariableSymbol: (dateDelivered: Date, count: number) => `${dateDelivered.getFullYear()}000${count}`,
 }
 
 export default utils

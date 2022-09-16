@@ -1,7 +1,8 @@
-import utils from "@shared/utils";
-import { useContext } from "react";
-import styled from "styled-components";
-import DataContext from "./dataContext";
+import utils from '@shared/utils'
+import {Field, useFormikContext} from 'formik'
+import React from 'react'
+import styled from 'styled-components'
+import {DataType} from './useData'
 
 const Section = styled.section`
   margin-bottom: 20px;
@@ -11,14 +12,14 @@ const Section = styled.section`
     tr {
       th {
         background: ${(props) => {
-          return props.theme.bgHighlight;
+          return props.theme.bgHighlight
         }};
       }
       td,
       th {
         border-bottom: 1px solid
           ${(props) => {
-            return props.theme.textSecondary;
+            return props.theme.textSecondary
           }};
         padding: 2px 5px;
         &:first-of-type {
@@ -34,11 +35,11 @@ const Section = styled.section`
       }
     }
   }
-`;
+`
 
 const Title = styled.section`
   margin-bottom: 10px;
-`;
+`
 
 const Summary = styled.section`
   display: flex;
@@ -59,14 +60,14 @@ const Summary = styled.section`
       line-height: 1em;
     }
   }
-`;
+`
 
 const Order = () => {
-  const { totalPrice, order, title } = useContext(DataContext);
+  const {values} = useFormikContext<DataType>()
 
   return (
     <Section>
-      <Title>{title}</Title>
+      <Title>{values.title}</Title>
       <table>
         <thead>
           <tr>
@@ -79,19 +80,23 @@ const Order = () => {
           </tr>
         </thead>
         <tbody>
-          {order.map((item, index) => {
+          {values.order.map((item, index) => {
             return (
               <tr key={item[2]}>
                 <td className="align-right">{index + 1}.</td>
                 <td className="align-left">{item[2]}</td>
-                <td className="align-right">{utils.formatPrice(item[1])}</td>
+                <td className="align-right">
+                  <Field
+                    name={`order[${index}][1]`}
+                    type="number"
+                  />
+                  {/* {utils.formatPrice(item[1])} */}
+                </td>
                 <td className="align-right">hod</td>
                 <td className="align-right">{utils.formatPrice(item[0])}</td>
-                <td className="align-right">
-                  {utils.formatPrice(item[0] * item[1])}
-                </td>
+                <td className="align-right">{utils.formatPrice(item[0] * item[1])}</td>
               </tr>
-            );
+            )
           })}
         </tbody>
       </table>
@@ -100,11 +105,11 @@ const Order = () => {
           <span>Celkom</span>
         </div>
         <div className="total">
-          <span>EUR {utils.formatPrice(totalPrice)}</span>
+          <span>EUR {utils.formatPrice(values.totalPrice)}</span>
         </div>
       </Summary>
     </Section>
-  );
-};
+  )
+}
 
-export default Order;
+export default Order

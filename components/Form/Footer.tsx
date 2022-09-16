@@ -1,6 +1,7 @@
-import React, {useContext} from 'react'
+import {useFormikContext} from 'formik'
+import React from 'react'
 import styled from 'styled-components'
-import DataContext from './dataContext'
+import {DataType} from './useData'
 
 const Section = styled.section`
   position: fixed;
@@ -13,12 +14,12 @@ const Section = styled.section`
 `
 
 const Footer = () => {
-  const {registrationNr} = useContext(DataContext)
+  const {values} = useFormikContext<DataType>()
 
   return (
     <Section>
       Spoločnosť je zapísaná v Živnostenskom registri Okresného úradu Bratislava, registrácia č.
-      {registrationNr}
+      {values.registrationNr}
     </Section>
   )
 }

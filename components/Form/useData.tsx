@@ -1,59 +1,53 @@
-import constant from "@shared/const";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from 'react'
+import constant from 'src/shared/const'
 
-const pricePerUnit = 10;
-const data = {
-  count: 1,
-  order: [
-    // [pricePerUnit, 13, 'Development projektu RCM a technická podpora'],
-    [pricePerUnit, 118, "Development projektu ECU a technická podpora"],
-  ] as [number, number, string][],
-};
+const pricePerUnit = 26.5
+const count = 1
 
-const useData = () => {
-  const [dateDelivered, setDateDelivered] = useState(new Date());
-  const [dateBilled, setDateBilled] = useState(new Date());
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [title, setTitle] = useState<string>("");
+const useForm = () => {
+  const [data, setData] = useState({
+    count,
+    order: [
+      // [pricePerUnit, 13, 'Development projektu RCM a technická podpora'],
+      [pricePerUnit, 118, 'Development projektu ECU a technická podpora'],
+    ] as [number, number, string][],
+    totalPrice: 0,
+    dateBilled: new Date(),
+    dateDelivered: new Date(),
+    daysDue: 16,
+    title: null,
+    iban: 'SK07 1100 0000 0029 4613 0841',
+    registrationNr: '110-315729',
+  })
 
   useEffect(() => {
-    dateBilled.setFullYear(2022);
-    dateBilled.setMonth(8);
-    dateBilled.setDate(3);
-    setDateBilled(dateBilled);
+    const dataCopy = {...data}
 
-    dateDelivered.setFullYear(2022);
-    dateDelivered.setMonth(7);
-    dateDelivered.setDate(31);
-    setDateDelivered(dateDelivered);
+    dataCopy.dateBilled.setFullYear(2022)
+    dataCopy.dateBilled.setMonth(8)
+    dataCopy.dateBilled.setDate(3)
 
-    setTitle(
-      `Fakturujem Vám poskytnuté služby za mesiac ${
-        constant.months[dateDelivered.getMonth()]
-      } ${dateDelivered.getFullYear()}`
-    );
+    dataCopy.dateDelivered.setFullYear(2022)
+    dataCopy.dateDelivered.setMonth(7)
+    dataCopy.dateDelivered.setDate(31)
 
-    setTotalPrice(
-      data.order.reduce((mem, item) => {
-        return item[0] * item[1] + mem;
-      }, 0)
-    );
-  });
+    dataCopy.title = `Fakturujem Vám poskytnuté služby za mesiac ${
+      constant.months[dataCopy.dateDelivered.getMonth()]
+    } ${dataCopy.dateDelivered.getFullYear()}`
+
+    dataCopy.totalPrice = data.order.reduce((mem, item) => {
+      return item[0] * item[1] + mem
+    }, 0)
+
+    setData(dataCopy)
+  })
 
   return {
-    count: data.count,
-    order: data.order,
-    variableSymbol: `${dateDelivered.getFullYear()}000${data.count}`,
-    totalPrice,
-    dateBilled,
-    dateDelivered,
-    daysDue: 16,
-    title,
-    iban: "SK07 1100 0000 0029 4613 0841",
-    registrationNr: "110-315729",
-    // registrationNr: '110-303029',
-    // iban: 'SK57 1100 0000 0029 3412 4639',
-  };
-};
+    data,
+  }
+}
 
-export default useData;
+export default useForm
+
+export type FormType = ReturnType<typeof useForm>
+export type DataType = FormType['data']
