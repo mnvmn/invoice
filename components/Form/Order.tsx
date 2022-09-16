@@ -1,8 +1,7 @@
 import utils from '@shared/utils'
 import {Field, useFormikContext} from 'formik'
-import React from 'react'
 import styled from 'styled-components'
-import {DataType} from './useData'
+import {DataType, getTotalPrice} from './useData'
 
 const Section = styled.section`
   margin-bottom: 20px;
@@ -87,13 +86,21 @@ const Order = () => {
                 <td className="align-left">{item[2]}</td>
                 <td className="align-right">
                   <Field
+                    className="screen-only"
                     name={`order[${index}][1]`}
                     type="number"
                   />
-                  {/* {utils.formatPrice(item[1])} */}
+                  <span className="print-only">{utils.formatPrice(item[1])}</span>
                 </td>
                 <td className="align-right">hod</td>
-                <td className="align-right">{utils.formatPrice(item[0])}</td>
+                <td className="align-right">
+                  <Field
+                    className="screen-only"
+                    name={`order[${index}][0]`}
+                    type="number"
+                  />
+                  <span className="print-only">{utils.formatPrice(item[0])}</span>
+                </td>
                 <td className="align-right">{utils.formatPrice(item[0] * item[1])}</td>
               </tr>
             )
@@ -105,7 +112,7 @@ const Order = () => {
           <span>Celkom</span>
         </div>
         <div className="total">
-          <span>EUR {utils.formatPrice(values.totalPrice)}</span>
+          <span>EUR {utils.formatPrice(getTotalPrice(values.order))}</span>
         </div>
       </Summary>
     </Section>

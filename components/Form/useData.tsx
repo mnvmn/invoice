@@ -4,14 +4,15 @@ import {useEffect, useState} from 'react'
 const pricePerUnit = 26.5
 const count = 1
 
+type OrderItem = [number, number, string]
+
 const useForm = () => {
   const [data, setData] = useState({
     count,
     order: [
       // [pricePerUnit, 13, 'Development projektu RCM a technická podpora'],
       [pricePerUnit, 118, 'Development projektu ECU a technická podpora'],
-    ] as [number, number, string][],
-    totalPrice: 0,
+    ] as OrderItem[],
     dateBilled: new Date(),
     dateDelivered: new Date(),
     daysDue: 16,
@@ -35,10 +36,6 @@ const useForm = () => {
       constant.months[dataCopy.dateDelivered.getMonth()]
     } ${dataCopy.dateDelivered.getFullYear()}`
 
-    dataCopy.totalPrice = data.order.reduce((mem, item) => {
-      return item[0] * item[1] + mem
-    }, 0)
-
     setData(dataCopy)
   }, [])
 
@@ -48,6 +45,12 @@ const useForm = () => {
 }
 
 export default useForm
+
+export function getTotalPrice(order: OrderItem[]): number {
+  return order.reduce((mem: number, item: OrderItem) => {
+    return item[0] * item[1] + mem
+  }, 0)
+}
 
 export type FormType = ReturnType<typeof useForm>
 export type DataType = FormType['data']

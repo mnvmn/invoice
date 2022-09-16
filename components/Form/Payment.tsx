@@ -1,8 +1,7 @@
 import utils from '@shared/utils'
 import {useFormikContext} from 'formik'
-import React from 'react'
 import styled from 'styled-components'
-import {DataType} from './useData'
+import {DataType, getTotalPrice} from './useData'
 
 const Title = styled.section`
   display: flex;
@@ -90,7 +89,7 @@ const Payment = () => {
         </div>
         <div>
           <div>Suma na úhradu</div>
-          <div className="text-bold">{utils.formatPrice(values.totalPrice)} EUR</div>
+          <div className="text-bold">{utils.formatPrice(getTotalPrice(values.order))} EUR</div>
         </div>
       </Section>
       <SubTitle>
