@@ -11,7 +11,7 @@ const Section = styled.section`
     tr {
       th {
         background: ${(props) => {
-          return props.theme.bgHighlight
+          return props.theme.bgDark1
         }};
       }
       td,
@@ -83,8 +83,17 @@ const Order = () => {
             return (
               <tr key={item[2]}>
                 <td className="align-right">{index + 1}.</td>
-                <td className="align-left">{item[2]}</td>
-                <td className="align-right">
+                <td
+                  className="align-left"
+                  style={{width: '800px'}}>
+                  <Field
+                    className="screen-only w-100"
+                    name={`order[${index}][2]`}
+                    type="text"
+                  />
+                  <span className="print-only">{item[2]}</span>
+                </td>
+                <td className="align-right whitespace-pre">
                   <Field
                     className="screen-only"
                     name={`order[${index}][1]`}
@@ -92,8 +101,8 @@ const Order = () => {
                   />
                   <span className="print-only">{utils.formatPrice(item[1])}</span>
                 </td>
-                <td className="align-right">hod</td>
-                <td className="align-right">
+                <td className="align-right whitespace-pre">hod</td>
+                <td className="align-right whitespace-pre">
                   <Field
                     className="screen-only"
                     name={`order[${index}][0]`}
@@ -101,7 +110,9 @@ const Order = () => {
                   />
                   <span className="print-only">{utils.formatPrice(item[0])}</span>
                 </td>
-                <td className="align-right">{utils.formatPrice(item[0] * item[1])}</td>
+                <td className="align-right whitespace-pre">
+                  {utils.formatPrice(item[0] * item[1])}
+                </td>
               </tr>
             )
           })}

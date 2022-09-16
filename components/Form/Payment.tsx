@@ -1,5 +1,5 @@
 import utils from '@shared/utils'
-import {useFormikContext} from 'formik'
+import {Field, useFormikContext} from 'formik'
 import styled from 'styled-components'
 import {DataType, getTotalPrice} from './useData'
 
@@ -29,7 +29,7 @@ const Section = styled.section`
       return props.theme.textPrimary
     }};
   background: ${(props) => {
-    return props.theme.bgHighlight
+    return props.theme.bgDark1
   }};
   padding: ${(props) => {
     return props.theme.gutter + 'px'
@@ -99,7 +99,14 @@ const Payment = () => {
         </div>
         <div>
           <div>Číslo objednávky</div>
-          <div>{values.count}</div>
+          <div>
+            <Field
+              className="screen-only"
+              name={`count`}
+              type="number"
+            />
+            <span className="print-only">{values.count}</span>
+          </div>
         </div>
       </SubTitle>
     </>

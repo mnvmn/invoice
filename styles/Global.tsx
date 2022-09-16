@@ -11,4 +11,7 @@ export const GlobalStyle = createGlobalStyle<{theme: typeof theme}>`
     background-color: ${(props) => props.theme.bgDefault};
     -webkit-print-color-adjust: exact !important;
   }
+  input {
+    background-color: ${(props) => props.theme.bgHighlight};
+  }
 `

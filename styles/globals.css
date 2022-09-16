@@ -22,10 +22,16 @@ body {
   font-weight: bold;
 }
 
+.whitespace-pre {
+  white-space: pre;
+}
+
 .align-right {
   text-align: right;
 }
-
+.w-100 {
+  width: 100%;
+}
 .align-left {
   text-align: left;
 }
