@@ -1,3 +1,4 @@
+import constant from '@shared/const'
 import utils from '@shared/utils'
 import {Field, useFormikContext} from 'formik'
 import styled from 'styled-components'
@@ -51,9 +52,17 @@ const SubTitle = styled.section`
   }
 `
 
+const Description = styled.section`
+  margin-bottom: 10px;
+`
+
 const Payment = () => {
   const {values} = useFormikContext<DataType>()
   const dueDate = utils.addDays(values.dateBilled, values.daysDue)
+  const title = `Fakturujem Vám poskytnuté služby za mesiac
+        ${constant.months[new Date(values.dateDelivered).getMonth()]} ${new Date(
+    values.dateDelivered
+  ).getFullYear()}`
 
   return (
     <>
@@ -120,6 +129,7 @@ const Payment = () => {
           </div>
         </div>
       </SubTitle>
+      <Description>{title}</Description>
     </>
   )
 }
