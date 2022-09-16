@@ -23,21 +23,15 @@ const useForm = () => {
   })
 
   useEffect(() => {
-    const localData = localStorage.getItem(LOCAL_STORAGE_KEY)
-    const dataCopy = localData ? JSON.parse(localData) : {...data}
-    const dateBilled = new Date()
-    dateBilled.setFullYear(2022)
-    dateBilled.setMonth(8)
-    dateBilled.setDate(3)
-    dataCopy.dateBilled = utils.formatDate(dateBilled, DateFormat.en)
-
-    const dateDelivered = new Date()
-    dateDelivered.setFullYear(2022)
-    dateDelivered.setMonth(7)
-    dateDelivered.setDate(31)
-    dataCopy.dateDelivered = utils.formatDate(dateDelivered, DateFormat.en)
-
-    setData(dataCopy)
+    const localDataString = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if (localDataString) {
+      const localData = JSON.parse(localDataString)
+      const dateBilled = new Date(localData.dateBilled)
+      localData.dateBilled = utils.formatDate(dateBilled, DateFormat.en)
+      const dateDelivered = new Date(localData.dateDelivered)
+      localData.dateDelivered = utils.formatDate(dateDelivered, DateFormat.en)
+      setData(localData)
+    }
   }, [])
 
   return {
