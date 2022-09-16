@@ -1,5 +1,4 @@
 import {Formik} from 'formik'
-import React from 'react'
 import styled from 'styled-components'
 import DataContext from './dataContext'
 import Footer from './Footer'
@@ -19,6 +18,7 @@ const Form = () => {
         {({data}) => {
           return (
             <Formik
+              enableReinitialize
               initialValues={data}
               onSubmit={(values) => {
                 console.log('values', values)

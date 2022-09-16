@@ -1,7 +1,9 @@
+export enum DateFormat {
+  en = 'YYYY-MM-DD',
+}
+
 const utils = {
   formatPrice: (price: number) => {
-    console.log(' :>> ')
-
     if (isNaN(price) || price === 0 || price === null) {
       return '0,00'
     } else {
@@ -10,19 +12,27 @@ const utils = {
       return priceFormatted + `,${('00' + fraction).slice(-2)}`
     }
   },
-  formatDate: (date: Date) => {
+  formatDate: (input: Date | string, format?: DateFormat) => {
+    const date: Date = typeof input === 'string' ? new Date(input) : input
     const day = date.getDate()
     const month = date.getMonth() + 1
     const year = date.getFullYear()
-
-    return `${day}.${month}.${year}`
+    switch (format) {
+      case DateFormat.en:
+        return `${year}-${month}-${day}`
+      default:
+        return `${day}.${month}.${year}`
+    }
   },
-  addDays: (date: Date, days: number) => {
-    const result = new Date(date)
-    result.setDate(result.getDate() + days)
-    return result
+  addDays: (input: Date | string, days: number) => {
+    const date: Date = typeof input === 'string' ? new Date(input) : input
+    date.setDate(date.getDate() + days)
+    return date
   },
-  getVariableSymbol: (dateDelivered: Date, count: number) => `${dateDelivered.getFullYear()}000${count}`,
+  getVariableSymbol: (input: Date | string, count: number) => {
+    const dateDelivered: Date = typeof input === 'string' ? new Date(input) : input
+    return `${dateDelivered.getFullYear()}000${count}`
+  },
 }
 
 export default utils

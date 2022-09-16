@@ -53,7 +53,6 @@ const SubTitle = styled.section`
 
 const Payment = () => {
   const {values} = useFormikContext<DataType>()
-
   const dueDate = utils.addDays(values.dateBilled, values.daysDue)
 
   return (
@@ -61,11 +60,23 @@ const Payment = () => {
       <Title>
         <div>
           <div>Dátum vystavenia</div>
-          <div className="text-bold">{utils.formatDate(values.dateBilled)}</div>
+          <div className="text-bold">
+            <Field
+              className="screen-only"
+              name="dateBilled"
+              type="date"
+            />
+            <span className="print-only">{utils.formatDate(values.dateBilled)}</span>
+          </div>
         </div>
         <div>
           <div>Dátum dodania</div>
-          <div className="text-bold">{utils.formatDate(values.dateDelivered)}</div>
+          <Field
+            className="screen-only"
+            name="dateDelivered"
+            type="date"
+          />
+          <span className="print-only">{utils.formatDate(values.dateDelivered)}</span>
         </div>
         <div>
           <div>Dátum splatnosti</div>

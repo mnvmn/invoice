@@ -1,4 +1,4 @@
-import constant from '@shared/const'
+import utils, {DateFormat} from '@shared/utils'
 import {useEffect, useState} from 'react'
 
 const pricePerUnit = 26.5
@@ -13,8 +13,8 @@ const useForm = () => {
       // [pricePerUnit, 13, 'Development projektu RCM a technická podpora'],
       [pricePerUnit, 118, 'Development projektu ECU a technická podpora'],
     ] as OrderItem[],
-    dateBilled: new Date(),
-    dateDelivered: new Date(),
+    dateBilled: utils.formatDate(new Date(), DateFormat.en),
+    dateDelivered: utils.formatDate(new Date(), DateFormat.en),
     daysDue: 16,
     title: '',
     iban: 'SK07 1100 0000 0029 4613 0841',
@@ -23,18 +23,17 @@ const useForm = () => {
 
   useEffect(() => {
     const dataCopy = {...data}
+    const dateBilled = new Date()
+    dateBilled.setFullYear(2022)
+    dateBilled.setMonth(8)
+    dateBilled.setDate(3)
+    dataCopy.dateBilled = utils.formatDate(dateBilled, DateFormat.en)
 
-    dataCopy.dateBilled.setFullYear(2022)
-    dataCopy.dateBilled.setMonth(8)
-    dataCopy.dateBilled.setDate(3)
-
-    dataCopy.dateDelivered.setFullYear(2022)
-    dataCopy.dateDelivered.setMonth(7)
-    dataCopy.dateDelivered.setDate(31)
-
-    dataCopy.title = `Fakturujem Vám poskytnuté služby za mesiac ${
-      constant.months[dataCopy.dateDelivered.getMonth()]
-    } ${dataCopy.dateDelivered.getFullYear()}`
+    const dateDelivered = new Date()
+    dateDelivered.setFullYear(2022)
+    dateDelivered.setMonth(7)
+    dateDelivered.setDate(31)
+    dataCopy.dateDelivered = utils.formatDate(dateDelivered, DateFormat.en)
 
     setData(dataCopy)
   }, [])

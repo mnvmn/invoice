@@ -1,3 +1,4 @@
+import constant from '@shared/const'
 import utils from '@shared/utils'
 import {Field, useFormikContext} from 'formik'
 import styled from 'styled-components'
@@ -66,7 +67,12 @@ const Order = () => {
 
   return (
     <Section>
-      <Title>{values.title}</Title>
+      <Title>
+        {`Fakturujem Vám poskytnuté služby za mesiac
+        ${constant.months[new Date(values.dateDelivered).getMonth()]} ${new Date(
+          values.dateDelivered
+        ).getFullYear()}`}
+      </Title>
       <table>
         <thead>
           <tr>
