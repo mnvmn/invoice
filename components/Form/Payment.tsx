@@ -66,7 +66,7 @@ const Payment = () => {
               name="dateBilled"
               type="date"
             />
-            <span className="print-only">{utils.formatDate(values.dateBilled)}</span>
+            <span className="text-bold print-only">{utils.formatDate(values.dateBilled)}</span>
           </div>
         </div>
         <div>
@@ -76,7 +76,7 @@ const Payment = () => {
             name="dateDelivered"
             type="date"
           />
-          <span className="print-only">{utils.formatDate(values.dateDelivered)}</span>
+          <span className="text-bold print-only">{utils.formatDate(values.dateDelivered)}</span>
         </div>
         <div>
           <div>Dátum splatnosti</div>
