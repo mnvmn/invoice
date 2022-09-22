@@ -80,7 +80,7 @@ const Order = () => {
                 <td className="align-right">{index + 1}.</td>
                 <td
                   className="align-left"
-                  style={{width: '800px'}}>
+                  style={{width: '400px'}}>
                   <Field
                     className="screen-only w-100"
                     name={`order[${index}][2]`}

@@ -51,6 +51,14 @@ const SubTitle = styled.section`
     }};
   }
 `
+const DueDateField = styled.div`
+  div {
+    margin-right: 30px;
+  }
+  input {
+    width: 50px;
+  }
+`
 
 const Description = styled.section`
   margin-bottom: 10px;
@@ -89,7 +97,14 @@ const Payment = () => {
         </div>
         <div>
           <div>Dátum splatnosti</div>
-          <div className="text-bold">{utils.formatDate(dueDate)}</div>
+          <DueDateField>
+            <div className="text-bold d-inline">{utils.formatDate(dueDate)}</div>
+            <Field
+              className="screen-only d-inline"
+              name="daysDue"
+              type="number"
+            />
+          </DueDateField>
         </div>
       </Title>
       <Section>

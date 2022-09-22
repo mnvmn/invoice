@@ -35,7 +35,9 @@ body {
 .align-left {
   text-align: left;
 }
-
+.d-inline {
+  display: inline-block;
+}
 @media print {
   .screen-only {
     display: none;

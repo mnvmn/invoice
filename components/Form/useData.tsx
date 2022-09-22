@@ -26,18 +26,21 @@ const useForm = () => {
     const localDataString = localStorage.getItem(LOCAL_STORAGE_KEY)
     if (localDataString) {
       const localData = JSON.parse(localDataString)
-      const dateBilled = new Date(localData.dateBilled)
-      localData.dateBilled = utils.formatDate(dateBilled, DateFormat.en)
-      const dateDelivered = new Date(localData.dateDelivered)
-      localData.dateDelivered = utils.formatDate(dateDelivered, DateFormat.en)
-      setData(localData)
+      if (localData.dateBilled) {
+        const dateBilled = new Date(localData.dateBilled)
+        localData.dateBilled = utils.formatDate(dateBilled, DateFormat.en)
+      }
+      if (localData.dateDelivered) {
+        const dateDelivered = new Date(localData.dateDelivered)
+        localData.dateDelivered = utils.formatDate(dateDelivered, DateFormat.en)
+      }
+      setData({...data, ...localData})
     }
   }, [])
 
   return {
     data,
     persistData: (newData: typeof data) => {
-      console.log('newData', newData)
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newData))
     },
   }
